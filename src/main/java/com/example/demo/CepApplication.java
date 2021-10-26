@@ -19,11 +19,12 @@ public class CepApplication {
 	public CommandLineRunner demo(CepRepository repository) {
 		return (args) -> {
 			// Salva os Ceps 
-			repository.save(new Cep("Porto Alegre", "90050230"));
-			repository.save(new Cep("Canoas", "91150000"));
-			repository.save(new Cep("Caibate", "33355222"));
-			repository.save(new Cep("Santa Rosa", "99955222"));
-			repository.save(new Cep("Canoas", "999111000"));
+			repository.save(new Cep("Porto Alegre", "90050230","Rua joão Alfredo","255","Costa e Silva","RS","4314902","051"));
+			repository.save(new Cep("Canoas", "91150000","Rua Hipica ","480","Igara","RS","4314555","051"));
+			repository.save(new Cep("Caibate", "33355222","Rua Santo Antonio","999","Camaquã","RS","580279","054"));
+			repository.save(new Cep("Santa Rosa", "99955222","Rua das Flores","580","Cristal","RS","4314902","055"));
+			repository.save(new Cep("Canoas", "999111000","Rua cilicio","255","Mathias","RS","580230","051"));
+		
 
 //			// busca todos os ceps
 //			log.info("ceps encontrados com findAll():");

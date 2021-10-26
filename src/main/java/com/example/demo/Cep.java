@@ -15,6 +15,49 @@ public class Cep {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@Column(name = "cidade")
+	private String cidade;
+
+	@Column(name = "cep")
+	private String cep;
+
+	@Column(name = "logradouro")
+	private String logradouro;
+
+	@Column(name = "complemento")
+	private String complemento;
+
+	@Column(name = "bairro")
+	private String bairro;
+
+	@Column(name = "uf")
+	private String uf;
+
+	@Column(name = "ibge")
+	private String ibge;
+
+	@Column(name = "ddd")
+	private String ddd;
+
+	public Cep() {
+	}
+
+	public Cep(String cidade, String cep, String logradouro, String complemento, String bairro, String uf, String ibge,
+			String ddd) {
+		super();
+		this.cidade = cidade;
+		this.cep = cep;
+		this.logradouro = logradouro;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.uf = uf;
+		this.ibge = ibge;
+		this.ddd = ddd;
+		this.id=null;
+	}
+	
+	
+
 	public Integer getId() {
 		return id;
 	}
@@ -23,13 +66,52 @@ public class Cep {
 		this.id = id;
 	}
 
-	@Column(name = "cidade")
-	private String cidade;
+	public String getLogradouro() {
+		return logradouro;
+	}
 
-	@Column(name = "cep")
-	private String cep;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
 
-	public Cep() {
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getIbge() {
+		return ibge;
+	}
+
+	public void setIbge(String ibge) {
+		this.ibge = ibge;
+	}
+
+	public String getDdd() {
+		return ddd;
+	}
+
+	public void setDdd(String ddd) {
+		this.ddd = ddd;
 	}
 
 	public Cep(String cidade, String cep) {
@@ -56,9 +138,8 @@ public class Cep {
 
 	@Override
 	public String toString() {
-		return "Cep [id=" + id + ", cidade=" + cidade + ", cep=" + cep + "]";
+		return "Cep [id=" + id + ", cidade=" + cidade + ", cep=" + cep + ", logradouro=" + logradouro + ", complemento="
+				+ complemento + ", bairro=" + bairro + ", uf=" + uf + ", ibge=" + ibge + ", ddd=" + ddd + "]";
 	}
-
-	
 
 }
