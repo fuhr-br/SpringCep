@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,30 +24,36 @@ public class CepRestController {
 	public ResponseEntity<Cep> getCep(@PathVariable("id") Integer id) {
 
 		Cep cep = this.cepRepository.findById(id);
-		
-		if(cep == null) { return new ResponseEntity<Cep>(HttpStatus.NOT_FOUND);}
-		
+
+		if (cep == null) {
+			return new ResponseEntity<Cep>(HttpStatus.NOT_FOUND);
+		}
+
 		return new ResponseEntity<Cep>(cep, HttpStatus.OK);
 
 	}
-	
 
 	@RequestMapping(value = "/cidade/{cidade}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Collection<Cep>> getCepByCidade(@PathVariable("cidade") String cidade) {
-		
+
 		Collection<Cep> cepCidades = cepRepository.findByCidade(cidade);
-		
-		if(cepCidades.isEmpty()) {
-			return  new ResponseEntity<Collection<Cep>>(HttpStatus.NOT_FOUND);
+
+		if (cepCidades.isEmpty()) {
+			return new ResponseEntity<Collection<Cep>>(HttpStatus.NOT_FOUND);
 		}
-		return  new ResponseEntity<Collection<Cep>>(cepCidades, HttpStatus.OK);
-		
+		return new ResponseEntity<Collection<Cep>>(cepCidades, HttpStatus.OK);
 
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
-	public Iterable<Cep> getAll() {
+	public ResponseEntity<Iterable<Cep>> getAll() {
 
-		return cepRepository.findAll();
+		Iterable<Cep> allCeps = cepRepository.findAll();
+		
+		if(allCeps == null) {
+			return new ResponseEntity<Iterable<Cep>>(HttpStatus.NOT_FOUND);
+			
+		}
+		return new ResponseEntity<Iterable<Cep>>(allCeps, HttpStatus.OK);
 	}
 }
