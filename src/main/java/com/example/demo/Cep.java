@@ -15,28 +15,28 @@ public class Cep {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name = "cidade")
+	@Column(nullable = false, name = "cidade")
 	private String cidade;
 
-	@Column(name = "cep")
+	@Column(nullable = false, name = "cep")
 	private String cep;
 
-	@Column(name = "logradouro")
+	@Column(nullable = false, name = "logradouro")
 	private String logradouro;
 
-	@Column(name = "complemento")
+	@Column(nullable = false, name = "complemento")
 	private String complemento;
 
-	@Column(name = "bairro")
+	@Column(nullable = false, name = "bairro")
 	private String bairro;
 
-	@Column(name = "uf")
+	@Column(nullable = false, name = "uf")
 	private String uf;
 
-	@Column(name = "ibge")
+	@Column(nullable = false, name = "ibge")
 	private String ibge;
 
-	@Column(name = "ddd")
+	@Column(nullable = false, name = "ddd")
 	private String ddd;
 
 	public Cep() {

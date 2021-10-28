@@ -49,11 +49,25 @@ public class CepRestController {
 	public ResponseEntity<Iterable<Cep>> getAll() {
 
 		Iterable<Cep> allCeps = cepRepository.findAll();
-		
-		if(allCeps == null) {
+
+		if (allCeps == null) {
 			return new ResponseEntity<Iterable<Cep>>(HttpStatus.NOT_FOUND);
-			
+
 		}
 		return new ResponseEntity<Iterable<Cep>>(allCeps, HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
+	public ResponseEntity<Void> deleteCep(@PathVariable("id") Integer id) {
+
+		Cep cep = this.cepRepository.findById(id);
+		this.cepRepository.delete(cep);
+		if (cep == null) {
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+
+	}
+
 }
