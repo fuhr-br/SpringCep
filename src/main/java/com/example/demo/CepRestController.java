@@ -1,8 +1,11 @@
 package com.example.demo;
 
-import java.util.List;
+
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +22,27 @@ public class CepRestController {
 	private CepRepository cepRepository;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Cep getCep(@PathVariable("id") Integer id) {
+	public ResponseEntity<Cep> getCep(@PathVariable("id") Integer id) {
 
 		Cep cep = this.cepRepository.findById(id);
-		return cep;
+		
+		if(cep == null) { return new ResponseEntity<Cep>(HttpStatus.NOT_FOUND);}
+		
+		return new ResponseEntity<Cep>(cep, HttpStatus.OK);
 
 	}
+	
 
 	@RequestMapping(value = "/cidade/{cidade}", method = RequestMethod.GET, produces = "application/json")
-	public List<Cep> getCepByCidade(@PathVariable("cidade") String cidade) {
-
-		return cepRepository.findByCidade(cidade);
+	public ResponseEntity<Collection<Cep>> getCepByCidade(@PathVariable("cidade") String cidade) {
+		
+		Collection<Cep> cepCidades = cepRepository.findByCidade(cidade);
+		
+		if(cepCidades.isEmpty()) {
+			return  new ResponseEntity<Collection<Cep>>(HttpStatus.NOT_FOUND);
+		}
+		return  new ResponseEntity<Collection<Cep>>(cepCidades, HttpStatus.OK);
+		
 
 	}
 

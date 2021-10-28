@@ -1,12 +1,13 @@
 package com.example.demo;
 
-import java.util.List;
+import java.util.Collection;
+
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface CepRepository extends CrudRepository<Cep, Long> {
 
-	List<Cep> findByCidade(String cidade);
+	Collection<Cep> findByCidade(String cidade);
 
 	Cep findById(int id);
 
